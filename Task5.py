@@ -1,29 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 import pandas as pd
-
-
-# In[2]:
-
+import numpy as np
 
 dataset=pd.read_csv('weblog.csv')
 dataset.head()
 
-
-# In[3]:
-
-
-import numpy as np
-dataset=dataset[['IP','Staus']]
+dataset=dataset[['IP','Status']]
 dataset.head()
-
-
-# In[4]:
-
 
 ip=dataset.IP.unique().tolist()
 dataset['Code']=np.zeros(len(dataset))
@@ -32,11 +17,7 @@ for i in range(len(dataset)):
   
 dataset.head()
 
-
-# In[5]:
-
-
-data=dataset[["Code","Staus"]]
+data=dataset[["Code","Status"]]
 df=data.copy()
 df['Code'] = df['Code'].astype(int)
 print(df.dtypes)
@@ -44,19 +25,6 @@ log=df.values
 log
 
 
-# In[6]:
-
-
-import matplotlib.pyplot as plt
-from sklearn.cluster import KMeans
-from sklearn.preprocessing import StandardScaler
-
-
-# In[7]:
-
-
-import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
@@ -82,31 +50,19 @@ frame['cluster'] = pred
 frame['cluster'].value_counts()
 
 
-# In[12]:
-
-
 plt.figure(figsize=(15,6))
-plt.scatter(dataset['IP'],dataset["Staus"],marker='*')
+plt.scatter(dataset['IP'],dataset["Status"],marker='*')
 plt.xlabel('IP')
 plt.ylabel('Status code')
 plt.show()
 
 
-# In[9]:
-
-
 blocked=[]
 for i in range(len(dataset)):
-    if dataset['Staus'][i]==401 or dataset['Staus'][i]==403:
+    if dataset['Status'][i]==401 or dataset['Status'][i]==403:
         blocked.append(dataset['IP'][i])
 print(blocked)
 with open('blocked.html', 'w+') as filehandle:
     for listitem in blocked:
         filehandle.write('=>%s\t\t' % listitem)
-
-
-# In[ ]:
-
-
-
 
