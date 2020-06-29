@@ -4,7 +4,7 @@
 import pandas as pd
 import numpy as np
 
-dataset=pd.read_csv('weblog2.csv')
+dataset=pd.read_csv("weblog.csv")
 dataset.head()
 
 dataset=dataset[['IP','Status']]
