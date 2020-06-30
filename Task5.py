@@ -59,7 +59,7 @@ plt.show()
 
 blocked=[]
 for i in range(len(dataset)):
-    if dataset['Status'][i]==401 or dataset['Status'][i]==403:
+    if dataset['Status'][i]==404 or dataset['Status'][i]==403:
         blocked.append(dataset['IP'][i])
 print(blocked)
 with open('blocked.html', 'w+') as filehandle:
